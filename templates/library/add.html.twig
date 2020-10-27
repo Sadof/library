@@ -1,0 +1,41 @@
+{% extends 'library/base.html.twig' %}
+
+
+{% block content_body %}
+    <h1>Add new book.</h1>
+    <div style="max-width:500px;">
+    <div class="alert alert-danger" role="alert" style="visibility: hidden;"></div>
+	    {{ form_start(addForm) }}
+	    	<div class="form-group">
+	    		{{form_label(addForm.title)}}
+	        	{{ form_widget(addForm.title, {'attr': {'class': 'form-control'}}) }}		
+	        </div>
+	        <div class="form-group">
+	        	{{form_label(addForm.author)}}
+	        	{{ form_widget(addForm.author, {'attr': {'class': 'form-control'}}) }}
+	        </div>
+	        <div class="form-group">
+	        	{{form_label(addForm.year)}}
+	        	{{ form_widget(addForm.year, {'attr': {'class': 'form-control'}}) }}
+	        </div>
+	        <button type="submit" class="btn btn-primary">Create!</button>
+	    {{ form_end(addForm) }}
+    </div>
+{% endblock %}
+
+
+{% block js %}
+	<script>
+		$("[name='book_form']").on('submit', function () {
+			if ($("#book_form_year").val() <= new Date().getFullYear()){
+				return true;
+			} else {
+				$(".alert").text("Year should be less then current.").css('visibility', 'visible');
+				return false;
+			}
+			})
+	</script>
+{% endblock %}
+
+
+

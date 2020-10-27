@@ -1,0 +1,9 @@
+{% extends 'library/base.html.twig' %}
+
+{% block content_body %}
+	<ul class="list-group">
+		{% for book in books %}
+  		<li class="list-group-item"><b>Title</b>: {{book.title}}, <b>Author</b>: {{book.author}}, <b>Date</b>: {{book.year}} <a href={{ url("edit_book", {'id': book.id}) }}>Edit book</a></li>
+  		{% endfor %}
+  	</ul>
+{% endblock %}
